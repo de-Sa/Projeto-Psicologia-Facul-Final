@@ -1,4 +1,3 @@
-// Prontuario.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Prontuario.css';
@@ -37,7 +36,7 @@ function Prontuario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aqui, faz a requisição para o backend com os dados do formulário
+    // Aqui, faz a requisição para o backend, futuramente trocar o 'URL_DO_SEU_BACKEND' para a nossa url
     axios.post('URL_DO_SEU_BACKEND', formData)
       .then(response => {
         console.log('Dados enviados com sucesso:', response.data);
@@ -56,7 +55,6 @@ function Prontuario() {
           <div>
             <h2>Prontuário: Dados do Paciente</h2>
             <form onSubmit={handleSubmit}>
-              {/* Formulário de dados do paciente */}
               <div className="form-group">
                 <label>Nome</label>
                 <input type="text" name="nome" value={formData.nome} onChange={handleInputChange} required />
