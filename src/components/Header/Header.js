@@ -1,20 +1,54 @@
-import React from 'react';
-import './Header.css';
+import React, { useState } from 'react';
+import { FaBell } from 'react-icons/fa';  // Importando o ícone de notificação
+import { HeaderContainer, ProfileSection, NotificationIcon, NotificationDot, UserInfo, LogoutSection, LogoutButton, NotificationsList, NotificationItem, NotificationDropdown, ArrowDown } from './Styled';
 
 function Header() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const username = user ? user.username : "Usuário";
+
+  const notifications = new Array(10).fill(false).map((_, index) => ({
+    id: index + 1,
+    message: `Notificação #${index + 1}`,
+    read: index % 2 === 0, // Marcar as notificações de índice par como lidas
+  }));
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleBellClick = () => {
+    setDropdownVisible(!isDropdownVisible); // Alterna a visibilidade da caixa de notificações
+  };
+
   return (
-    <header className="header-right" >
-      <div className="profile-section">
-        <div className="notification-icon">
-          <span className="notification-dot"></span>
-          <img src="/Images/bell-icon.png" alt="Notificação" style={{ height: '25px', width: '20px' }} />
-        </div>
-        <div className="user-info">
-          <img src="/Images/user-photo.png" alt="Foto do usuário" />
-          <span>Lucas</span>
-        </div>
-      </div>
-    </header>
+    <HeaderContainer>
+      <ProfileSection>
+        <NotificationIcon onClick={handleBellClick}>
+          <FaBell size={25} />
+          {notifications.filter(notification => !notification.read).length > 0 && (
+            <NotificationDot />
+          )}
+          {isDropdownVisible && (
+            <NotificationDropdown>
+              <ArrowDown />
+              <NotificationsList>
+                {notifications.map((notification) => (
+                  <NotificationItem key={notification.id} isRead={notification.read}>
+                    {notification.message}
+                  </NotificationItem>
+                ))}
+              </NotificationsList>
+            </NotificationDropdown>
+          )}
+        </NotificationIcon>
+      </ProfileSection>
+
+      <UserInfo>
+        <span>{username}</span>
+      </UserInfo>
+
+      <LogoutSection>
+        <LogoutButton>Logout</LogoutButton>
+      </LogoutSection>
+    </HeaderContainer>
   );
 }
 

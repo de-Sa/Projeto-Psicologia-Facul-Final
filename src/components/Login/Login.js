@@ -1,15 +1,59 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import unicuLogo from '../Images/unicu.png'; 
-import './login.css';
+import { 
+  LoginPage, 
+  LoginSidebar, 
+  SidebarLogo, 
+  SidebarLoginMenu, 
+  LoginContainer, 
+  LoginBox, 
+  FormGroup, 
+  SubmitButton 
+} from './Styles'; // Importação dos estilos
+import unicuLogo from '../../Images/unicu.png';
 
 function Login() {
+  // const navigate = useNavigate();
+  // const [formData, setFormData] = useState({
+  //   ra: '',
+  //   password: '',
+  // });
+
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post('URL_DO_SEU_BACKEND', formData)
+  //     .then((response) => {
+  //       const { token, user } = response.data;
+
+  //       localStorage.setItem('token', token);
+  //       localStorage.setItem('user', JSON.stringify(user));
+  //       localStorage.setItem('status', true);
+
+  //       console.log('Login bem-sucedido:', response.data);
+  //       navigate('/home'); 
+  //     })
+  //     .catch((error) => {
+  //       console.error('Erro ao realizar login:', error);
+  //       alert('Erro ao realizar login. Por favor, tente novamente.');
+  //     });
+  // };
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    ra: '',
-    password: '',
-  });
+  const users = [
+    { ra: '1234', password: '1234' }, // admin
+    { ra: '12345', password: '1234'}, // professor
+    { ra: '123456', password: '1234'}, // aluno
+  ];
+  const [active, setActive] = useState("")
+
+  const [formData, setFormData] = useState({ ra: '', password: '' });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -18,35 +62,57 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Lembrar de trocar esse caraio do 'URL_DO_SEU_BACKEND' pela URL que os meninos mandarem
-    axios.post('URL_DO_SEU_BACKEND', formData)
-      .then(response => {
-        console.log('Login bem-sucedido:', response.data);
-        navigate('/Home');
-      })
-      .catch(error => {
-        console.error('Erro ao realizar login:', error);
-        alert('Erro ao realizar login. Por favor, tente novamente.');
-      });
+  
+    // Verifica se o usuário e senha correspondem ao predefinido
+    const user = users.find(
+      (u) => u.ra === formData.ra && u.password === formData.password
+    );
+  
+    if (user) {
+      let userType = "";
+  
+      switch (user.ra) {
+        case "1234":
+          userType = "A";
+          break;
+        case "12345":
+          userType = "B";
+          break;
+        case "123456":
+          userType = "C";
+          break;
+        default:
+          userType = "";
+      }
+  
+      setActive(userType); // Atualiza o estado corretamente
+      localStorage.setItem('saved', JSON.stringify(userType)); // Salva o valor no localStorage
+  
+      setErrorMessage('');
+      navigate('/home'); // Redireciona para a página Home
+    } else {
+      setErrorMessage('Usuário ou senha inválidos!');
+    }
   };
+  
 
   return (
-    <div className="login-page">
-      <div className="login-sidebar">
-        <div className="sidebar-logo">
-          <img src={unicuLogo} alt="Logo Unicuritiba" className="logo" />
-        </div>
-        <ul className="sidebar-login-menu">
+    <LoginPage>
+      <LoginSidebar>
+        <SidebarLogo>
+          <img src={unicuLogo} alt="Logo Unicuritiba" />
+        </SidebarLogo>
+        <SidebarLoginMenu>
           <li className="selected">
             <span>Login</span>
           </li>
-        </ul>
-      </div>
-      <div className="login-container">
-        <div className="login-box">
+        </SidebarLoginMenu>
+      </LoginSidebar>
+      <LoginContainer>
+        <LoginBox>
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <FormGroup>
               <input
                 type="text"
                 name="ra"
@@ -55,22 +121,22 @@ function Login() {
                 placeholder="RA"
                 required
               />
-            </div>
-            <div className="form-group">
+            </FormGroup>
+            <FormGroup>
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                placeholder="SENHA" 
+                placeholder="SENHA"
                 required
               />
-            </div>
-            <button type="submit" className="submit-button">Avançar</button>
+            </FormGroup>
+            <SubmitButton onClick={handleSubmit} type="submit">Avançar</SubmitButton>
           </form>
-        </div>
-      </div>
-    </div>
+        </LoginBox>
+      </LoginContainer>
+    </LoginPage>
   );
 }
 
