@@ -13,13 +13,12 @@ import {
 } from './Styled';
 
 const Configuracoes = () => {
-  const [user, setUser] = useState({name: 'Pedro', ra: '12345', type: 'A'});
+  const [user, setUser] = useState({ name: 'Pedro', ra: '12345', type: 'A' });
   const [newAluno, setNewAluno] = useState({ name: '', ra: '', password: '' });
   const [newProfessor, setNewProfessor] = useState({ name: '', ra: '', password: '' });
 
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-  }, []);
+  const [alunoMensagem, setAlunoMensagem] = useState(false);
+  const [professorMensagem, setProfessorMensagem] = useState(false);
 
   const handleInputChange = (e, setState) => {
     const { name, value } = e.target;
@@ -27,38 +26,43 @@ const Configuracoes = () => {
   };
 
   const handleCreateAluno = () => {
+    setAlunoMensagem(true); // Exibe a mensagem de sucesso
+    setTimeout(() => setAlunoMensagem(false), 4000); // Oculta a mensagem após 4 segundos
     console.log('Aluno criado:', newAluno);
-    setNewAluno({ name: '', ra: '', password: '' });
+    setNewAluno({ name: '', ra: '', password: '' }); // Limpa o formulário
   };
 
   const handleCreateProfessor = () => {
+    setProfessorMensagem(true); // Exibe a mensagem de sucesso
+    setTimeout(() => setProfessorMensagem(false), 4000); // Oculta a mensagem após 4 segundos
     console.log('Professor criado:', newProfessor);
-    setNewProfessor({ name: '', ra: '', password: '' });
+    setNewProfessor({ name: '', ra: '', password: '' }); // Limpa o formulário
   };
+
   return (
     <Container>
-    <Title>Configurações do Usuário</Title>
+      <Title>Configurações do Usuário</Title>
 
-    <InfoContainer>
-  {user && (
-    <>
-      <InfoBlock>
-        <Label>Nome</Label>
-        <UserInfo>{user.name}</UserInfo>
-      </InfoBlock>
-      <InfoBlock>
-        <Label>RA</Label>
-        <UserInfo>{user.ra}</UserInfo>
-      </InfoBlock>
-      <InfoBlock>
-        <Label>Tipo</Label>
-        <UserInfo>{user.type === 'A' ? 'Admin Geral' : user.type === 'B' ? 'Professor' : 'Aluno'}</UserInfo>
-      </InfoBlock>
-    </>
-  )}
-</InfoContainer>
-
-
+      <InfoContainer>
+        {user && (
+          <>
+            <InfoBlock>
+              <Label>Nome</Label>
+              <UserInfo>{user.name}</UserInfo>
+            </InfoBlock>
+            <InfoBlock>
+              <Label>RA</Label>
+              <UserInfo>{user.ra}</UserInfo>
+            </InfoBlock>
+            <InfoBlock>
+              <Label>Tipo</Label>
+              <UserInfo>
+                {user.type === 'A' ? 'Admin Geral' : user.type === 'B' ? 'Professor' : 'Aluno'}
+              </UserInfo>
+            </InfoBlock>
+          </>
+        )}
+      </InfoContainer>
 
       {/* Seção de Alteração de Dados */}
       <Section>
@@ -104,6 +108,7 @@ const Configuracoes = () => {
               />
               <Button onClick={handleCreateAluno}>Criar Aluno</Button>
             </FormContainer>
+            {alunoMensagem && <h3>Aluno criado com sucesso!</h3>}
           </Section>
 
           <Section>
@@ -135,6 +140,7 @@ const Configuracoes = () => {
               />
               <Button onClick={handleCreateProfessor}>Criar Professor</Button>
             </FormContainer>
+            {professorMensagem && <h3>Professor criado com sucesso!</h3>}
           </Section>
         </>
       )}
@@ -170,6 +176,7 @@ const Configuracoes = () => {
             />
             <Button onClick={handleCreateAluno}>Criar Aluno</Button>
           </FormContainer>
+          {alunoMensagem && <h3>Aluno criado com sucesso!</h3>}
         </Section>
       )}
     </Container>

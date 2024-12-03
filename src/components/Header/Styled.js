@@ -69,7 +69,7 @@ export const NotificationDropdown = styled.div`
   width: 250px;
   display: flex;
   flex-direction: column;
-  z-index: 20;
+  z-index: 1;
 `;
 
 export const ArrowDown = styled(FaArrowDown)`

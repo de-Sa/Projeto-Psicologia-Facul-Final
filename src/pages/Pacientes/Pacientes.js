@@ -4,24 +4,15 @@ import { Container, Title, PatientList, TableContainer, Button } from './Styled'
 
 // Simulação de dados dos pacientes e enrollments, incluindo o campo 'is_active'
 const mockPacientes = [
-  { id: 1, nome: 'João' },
-  { id: 2, nome: 'Carlos' },
-  { id: 3, nome: 'Pedro' },
-  { id: 1, nome: 'João' },
-  { id: 2, nome: 'Carlos' },
-  { id: 3, nome: 'Pedro' },
-  { id: 1, nome: 'João' },
-  { id: 2, nome: 'Carlos' },
-  { id: 3, nome: 'Pedro' },
+  { id: 1, nome: 'Lucas Filipak' },
+  { id: 2, nome: 'Mario' },
 ];
 
 const mockEnrollments = [
-  { id: 1, student_id: 101, professor_id: 201, client_id: 1, familiar_historic: '', social_historic: '', obs: '', is_active: true },
-  { id: 2, student_id: 101, professor_id: 201, client_id: 1, familiar_historic: '', social_historic: '', obs: '', is_active: true },
-  { id: 3, student_id: 101, professor_id: 201, client_id: 1, familiar_historic: '', social_historic: '', obs: '', is_active: true },
-  { id: 4, student_id: 101, professor_id: 201, client_id: 1, familiar_historic: '', social_historic: '', obs: '', is_active: true },
-  { id: 5, student_id: 102, professor_id: 202, client_id: 2, familiar_historic: '', social_historic: '', obs: '', is_active: false },
-  { id: 6, student_id: 103, professor_id: 203, client_id: 3, familiar_historic: '', social_historic: '', obs: '', is_active: true },
+  { id: 1, student_id: 3, professor_id: 2, client_id: 1, familiar_historic: '', social_historic: '', obs: '', is_active: true },
+  { id: 2, student_id: 3, professor_id: 2, client_id: 1, familiar_historic: '', social_historic: '', obs: '', is_active: true },
+  { id: 3, student_id: 3, professor_id: 2, client_id: 2, familiar_historic: '', social_historic: '', obs: '', is_active: true },
+  { id: 4, student_id: 3, professor_id: 2, client_id: 2, familiar_historic: '', social_historic: '', obs: '', is_active: true },
 ];
 
 const PacientesList = () => {

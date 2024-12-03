@@ -12,6 +12,7 @@ function Home({ setActiveSection }) {
     { id: 3, ra: 123456, username: "Claudio", type: "C" },
   ];
 
+
   // Obtém o tipo de usuário salvo no localStorage
   const savedType = JSON.parse(localStorage.getItem("saved")); // Certifique-se de que o valor está sendo interpretado corretamente
   const [selectedUser, setSelectedUser] = useState(null);
