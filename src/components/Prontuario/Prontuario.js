@@ -18,9 +18,12 @@ import {
 
 function Prontuario() {
   const [activeSubSection, setActiveSubSection] = useState('dados');
+<<<<<<< HEAD
   const [newProntuario, setNewProntuario] = useState({ nome: '', dataNascimento: '', genero: '', email: '', telefone: '', contatoEmergencia: '', ocupacao: '', escolaridade: '', necessidadeEspecial: '', endereco: '', cep: '', numero: '', complemento: '', historicoFamiliar: '', historicoSocial: '', consideracoesFinais: '', observacoes: ''});
   const [ProntuarioMensagem, setProntuarioMensagem] = useState(false);
   
+=======
+>>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089
   const [currentDate] = useState(new Date().toLocaleDateString('pt-BR'));
   const [formData, setFormData] = useState({
     nome: '',
@@ -57,7 +60,11 @@ function Prontuario() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     axios.post('URL_DO_BACKEND', formData)
+=======
+    axios.post('URL_DO_SEU_BACKEND', formData)
+>>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089
       .then(response => {
         alert('Dados enviados com sucesso!');
       })
@@ -66,6 +73,7 @@ function Prontuario() {
       });
   };
 
+<<<<<<< HEAD
   const handleCreateProntuario = () => {
     setProntuarioMensagem(true); // Exibe a mensagem de sucesso
     setTimeout(() => setProntuarioMensagem(false), 4000); // Oculta a mensagem após 4 segundos
@@ -92,6 +100,8 @@ function Prontuario() {
     });
   };
 
+=======
+>>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089
   const renderSubSection = () => {
     switch (activeSubSection) {
       case 'dados':
@@ -215,8 +225,12 @@ function Prontuario() {
             </MenuItem>
           ))}
         </MenuList>
+<<<<<<< HEAD
         <SubmitButton type="submit" onClick={handleCreateProntuario}>Confirmar</SubmitButton>
         {ProntuarioMensagem && <h3>Prontuario salvo com Sucesso!</h3>}
+=======
+        <SubmitButton type="submit">Confirmar</SubmitButton>
+>>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089
       </SidebarContainer>
       <FormContainer>{renderSubSection()}</FormContainer>
 

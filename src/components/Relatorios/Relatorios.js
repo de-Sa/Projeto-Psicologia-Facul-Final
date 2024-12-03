@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import {
   ReportContainer,
@@ -43,3 +44,10 @@ const Report = () => {
 };
 
 export default Report;
+=======
+export default function Relatorios(){
+    return(
+        <h1>Relatorios</h1>
+    )
+}
+>>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089

@@ -13,7 +13,11 @@ import {
 } from './Styled';
 
 const Configuracoes = () => {
+<<<<<<< HEAD
   const [user, setUser] = useState({ name: '', ra: '12345', type: 'A' });
+=======
+  const [user, setUser] = useState({ name: 'Pedro', ra: '12345', type: 'A' });
+>>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089
   const [newAluno, setNewAluno] = useState({ name: '', ra: '', password: '' });
   const [newProfessor, setNewProfessor] = useState({ name: '', ra: '', password: '' });
 
