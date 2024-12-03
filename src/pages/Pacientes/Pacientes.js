@@ -12,7 +12,6 @@ const mockEnrollments = [
   { id: 1, student_id: 3, professor_id: 2, client_id: 1, familiar_historic: 'Osteoporose', social_historic: 'Atualmente, trabalha como técnico em uma empresa de manuten...', obs: '', is_active: true },
   { id: 2, student_id: 3, professor_id: 2, client_id: 1, familiar_historic: 'Osteoporose', social_historic: 'Atualmente, trabalha como técnico em uma empresa de manuten...', obs: '', is_active: true },
   { id: 3, student_id: 3, professor_id: 2, client_id: 2, familiar_historic: 'Anemia', social_historic: 'Atualmente, trabalha como supervisor em um supermercado, mas sonha em...', obs: '', is_active: true },
-  { id: 4, student_id: 3, professor_id: 2, client_id: 2, familiar_historic: 'Anemia', social_historic: 'Atualmente, trabalha como supervisor em um supermercado, mas sonha em...', obs: '', is_active: true },
 ];
 
 const PacientesList = () => {
