@@ -26,7 +26,15 @@ function Home({ setActiveSection }) {
       }
     }
   }, [savedType]);
-
+  
+  // Salvar o usuário selecionado no localStorage sempre que ele for atualizado
+  useEffect(() => {
+    if (selectedUser) {
+      localStorage.setItem("user", JSON.stringify(selectedUser));
+      console.log("Usuário salvo no localStorage:", selectedUser);
+    }
+  }, [selectedUser]);
+  
   // useEffect adicional para verificar mudanças no `selectedUser`
   useEffect(() => {
     if (selectedUser) {

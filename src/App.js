@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
 import Header from './components/Header/Header';
-import Home from './components/Home/Home';  // Certifique-se de importar Home
-import Dashboard from './components/Dashboard/Dashboard';
+import Home from './pages/Home/Home';  // Certifique-se de importar Home
+import Dashboard from './pages/Dashboard/Dashboard';
 import Consultas from './pages/Consultas/Consultas';
-import Prontuario from './components/Prontuario/Prontuario';
-import Relatorios from './components/Relatorios/Relatorios';
+import Prontuario from './pages/Prontuario/Prontuario';
+import Relatorios from './pages/Relatorios/Relatorios';
 import Pacientes from './pages/Pacientes/Pacientes';
 import Configuracoes from './pages/Configuracoes/Configuracoes';
-import Comunicados from './components/Comunicados/Comunicados';
-import Login from './components/Login/Login';
+import Comunicados from './pages/Comunicados/Comunicados';
+import Login from './pages/Login/Login';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home'); // Controla a seção ativa
@@ -27,7 +27,7 @@ function App() {
             <div className="app-container" style={{ display: 'flex', width: '100%' }}>
               <Sidebar setActiveSection={setActiveSection} activeSection={activeSection} />
               <div className="content" style={{ flex: 1, padding: '20px' }}>
-              <Header />
+              <Header setActiveSection={setActiveSection}/>
                 <Routes>
                   <Route path="/" element={<Home setActiveSection={setActiveSection} />} />
                   <Route path="dashboard" element={<Dashboard />} />

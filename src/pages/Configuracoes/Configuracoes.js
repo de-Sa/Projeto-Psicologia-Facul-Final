@@ -13,16 +13,19 @@ import {
 } from './Styled';
 
 const Configuracoes = () => {
-<<<<<<< HEAD
-  const [user, setUser] = useState({ name: '', ra: '12345', type: 'A' });
-=======
-  const [user, setUser] = useState({ name: 'Pedro', ra: '12345', type: 'A' });
->>>>>>> 3925d73bf13beed0a37aad68828dfafbc38fd089
+  const [user, setUser] = useState({ username: '', ra: '', type: '' });
   const [newAluno, setNewAluno] = useState({ name: '', ra: '', password: '' });
   const [newProfessor, setNewProfessor] = useState({ name: '', ra: '', password: '' });
 
   const [alunoMensagem, setAlunoMensagem] = useState(false);
   const [professorMensagem, setProfessorMensagem] = useState(false);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    setUser(storedUser); // Atualiza o estado com o usuário armazenado
+    console.log(storedUser); // Exibe o usuário no console
+  }, []);
+  
 
   const handleInputChange = (e, setState) => {
     const { name, value } = e.target;
@@ -52,7 +55,7 @@ const Configuracoes = () => {
           <>
             <InfoBlock>
               <Label>Nome</Label>
-              <UserInfo>{user.name}</UserInfo>
+              <UserInfo>{user.username}</UserInfo>
             </InfoBlock>
             <InfoBlock>
               <Label>RA</Label>
